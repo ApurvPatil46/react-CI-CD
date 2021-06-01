@@ -1,12 +1,9 @@
 FROM node:alpine
 
-WORKDIR /var/reactapp
+WORKDIR /var/app
 
-COPY ./package.json ./
-
+COPY package.json .
 RUN npm install
-
 COPY . .
 
-CMD ["npm" ,"run" , "start" ]
-
+CMD [ "npm", "run", "start" ]
