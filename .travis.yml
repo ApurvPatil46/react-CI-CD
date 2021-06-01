@@ -1,0 +1,21 @@
+sudo : required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t react-CI-CD -f Dockerfile.dev
+
+
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $aws_access_key
+  secret_access_key: "$aws_secret_key"
+  region: "us-east-1"
+  app: "react-CI-CD"
+  env: "Reactcicd-env"
+  bucket_name: "elasticbeanstalk-us-east-1-959857001111"
+  bucket_path: Reactcicd
+  on:
+    branch: master
